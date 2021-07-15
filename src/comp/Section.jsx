@@ -1,17 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import arrow from  './down-arrow.svg'
-const Section = () => {
+const Section = ({title,description,backgroundImage,leftbtntext,rightbtntext}) => {
   return (
-    <Wrap>
+    <Wrap bgImage={backgroundImage}>
       <ItemText>
-        <h1>Model S</h1>
-        <p>Oder online for touchless delivery</p>
+        <h1>{title}</h1>
+        <p>{description}</p>
       </ItemText>
       <Button>
         <ButtonGroup>
-          <LeftButton>Custom Oder</LeftButton>
-          <RightButton>Existing Inventory</RightButton>
+          <LeftButton>{leftbtntext}</LeftButton>
+          <RightButton>{rightbtntext}</RightButton>
         </ButtonGroup>
         <DownArrow src={arrow}/>
       </Button>
@@ -25,7 +25,7 @@ const Wrap = styled.div`
   width: 100vw;
   height: 100vh;
   background-size: cover;
-  background-image: url("https://images.unsplash.com/photo-1597404294360-feeeda04612e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c3BvcnRzJTIwY2FyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80");
+  background-image: ${props=>`url(${props.bgImage})`};
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
@@ -36,10 +36,14 @@ const Wrap = styled.div`
 const ItemText = styled.div`
   padding-top: 15vh;
   text-aign: center;
+  
 `;
 const ButtonGroup = styled.div`
   display: flex;
   margin-bottom: 30px;
+  @media (max-width:700px){
+    flex-direction:column;
+  }
 `;
 const LeftButton = styled.div`
   background-color: rgba(23, 26, 32, 0.8);
@@ -57,7 +61,11 @@ const LeftButton = styled.div`
   margin: 8px;
 `;
 
-const RightButton = styled(LeftButton)``;
+const RightButton = styled(LeftButton)`
+background:white;
+color:black;
+opacity:0.5;
+`;
 
 const DownArrow = styled.img`
   margin-top: 20px;
