@@ -48,7 +48,7 @@ const Home = () => {
 			description='Give it a try'
 			backgroundImage={Acc}
 			leftbtntext='Order Now'
-			rightbtntext='Learn More'/>
+			/>
 		</Container>
 	)
 }
