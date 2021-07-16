@@ -3,18 +3,21 @@ import Logo from './images/logo.svg'
 import styled from 'styled-components'
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
+import {SelectCars} from '../features/car/CarSlics'
+import {useSelector} from 'react-redux'
 const Header = () => {
  const [BurgerStatus,setBurger]=useState(false)
+ const cars=useSelector(SelectCars)
+ console.log(cars)
 	return (
 		<Container>
 		  <a>
 			  <img src={Logo} alt="Logo" />
 		  </a>
 		  <Menu>
-			  <a href="">Model S</a>
-			  <a href="">Model 3</a>
-			  <a href="">Model X</a>
-			  <a href="">Model Y</a>
+			  {cars&&cars.map((car,index)=>{
+			return	 (<a key={index} href="">{car}</a>)
+			  })}	  
 		  </Menu>
 		  <RightMenu>
 			  <a href="#">Shop</a>
@@ -25,6 +28,7 @@ const Header = () => {
 			  <CloseWrapper>
 				  <CustomClose onClick={()=>setBurger(false)}/>
 			  </CloseWrapper>
+			  {cars&&cars.map((car,index)=><li><a href="#">{car}</a></li>)}
 			  <li><a href="#">Existing Inventory</a></li>
 			  <li><a href="#">Used Inventory</a></li>
 			  <li><a href="#">Trade-in</a></li>
