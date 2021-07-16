@@ -1,9 +1,10 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Logo from './images/logo.svg'
 import styled from 'styled-components'
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 const Header = () => {
+ const [BurgerStatus,setBurger]=useState(false)
 	return (
 		<Container>
 		  <a>
@@ -18,11 +19,11 @@ const Header = () => {
 		  <RightMenu>
 			  <a href="#">Shop</a>
 			  <a href="#">Tesla Account</a>
-			  <CustomMenu/>
+			  <CustomMenu onClick={()=>setBurger(true)}/>
 		  </RightMenu>
-		  <BurgerNav>
+		  <BurgerNav show={BurgerStatus}>
 			  <CloseWrapper>
-				  <CustomClose/>
+				  <CustomClose onClick={()=>setBurger(false)}/>
 			  </CloseWrapper>
 			  <li><a href="#">Existing Inventory</a></li>
 			  <li><a href="#">Used Inventory</a></li>
@@ -90,6 +91,8 @@ li{
 		text-decoration: none;
 	}
 }
+transform: ${props=>props.show?'translateX(0)':'translateX(100%)'};
+transition: transform 0.25s;
 `
 const CustomClose=styled(CloseIcon)`
 cursor: pointer;
